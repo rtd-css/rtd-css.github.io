@@ -1,0 +1,236 @@
+@import 'breakpoints/breakpoints';
+
+html {
+  --rtd-config:
+    ----rtd-device
+    --rtd-device-name mobile
+    --rtd-device-class rtd-mobile
+    --rtd-device-max-width 767px
+    --rtd-device-merge-down-to --rtd-none
+    --rtd-device-merge-up-to --rtd-none
+    ----rtd-device
+    --rtd-device-name tablet
+    --rtd-device-class rtd-tablet
+    --rtd-device-max-width 1024px
+    --rtd-device-merge-down-to mobile
+    --rtd-device-merge-up-to --rtd-none
+    ----rtd-device
+    --rtd-device-name desktop
+    --rtd-device-class rtd-desktop
+    --rtd-device-max-width --rtd-none
+    --rtd-device-merge-down-to tablet
+    --rtd-device-merge-up-to --rtd-none;
+}
+
+$header-bg-color: #999;
+$left-bar-bg-color: #bbb;
+$right-bar-bg-color: #bbb;
+$main-bar-bg-color: #ddd;
+
+$header-left-list-hor-spacing: 10px;
+$header-icon-fg-color: #ddd;
+$header-icon-font-size: 20px;
+$header-title-fg-color: #ddd;
+$header-title-font-size: 20px;
+
+$left-bar-list-item-bg-color: #ddd;
+$right-bar-list-item-bg-color: #ddd;
+$main-bar-list-item-bg-color: #bbb;
+
+$header-height: 40px;
+$left-bar-width: 25%;
+$right-bar-width: 25%;
+
+$list-hor-spacing: 16px;
+$list-ver-spacing: 16px;
+$list-item-border-radius: 8px;
+
+$left-bar-list-item-height: 60px;
+$right-bar-list-item-height: 60px;
+$main-bar-list-item-height: 20px;
+
+//
+// General
+//
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+//
+// Header
+//
+
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: $header-height;
+  padding: 0 $list-hor-spacing;
+  background-color: $header-bg-color;
+
+  i {
+    @include media-only(mobile) {
+      display: inline-block;
+      font-size: $header-icon-font-size;
+      color: $header-icon-fg-color;
+    }
+
+    @include media-up(tablet) {
+      display: none;
+    }
+  }
+
+  .header__title {
+    display: inline-block;
+    line-height: $header-height;
+    font-size: $header-title-font-size;
+    color: $header-title-fg-color;
+  }
+
+  .header__left-list {
+    margin-left: -$header-left-list-hor-spacing;
+
+    .header__left-item {
+      margin-left: $header-left-list-hor-spacing;
+    }
+  }
+}
+
+//
+// Content
+//
+
+.content {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: $header-height;
+  bottom: 0;
+}
+
+//
+// Left bar
+//
+
+.left-bar {
+  @include media-only(mobile) {
+    display: none;
+  }
+
+  @include media-up(tablet) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $left-bar-width;
+    background-color: $left-bar-bg-color;
+  }
+}
+
+//
+// Right bar
+//
+
+.right-bar {
+  @include media-down(tablet) {
+    display: none;
+  }
+
+  @include media-only(desktop) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: $right-bar-width;
+    background-color: $right-bar-bg-color;
+  }
+}
+
+//
+// Main bar
+//
+
+.main-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: $main-bar-bg-color;
+
+  @include media-only(mobile) {
+    left: 0;
+    right: 0;
+  }
+
+  @include media-only(tablet) {
+    left: $left-bar-width;
+    right: 0;
+  }
+
+  @include media-only(desktop) {
+    left: $left-bar-width;
+    right: $right-bar-width;
+  }
+}
+
+//
+// Left bar list
+//
+
+.left-bar__list {
+  .left-bar__item {
+    margin: $list-ver-spacing $list-hor-spacing 0 $list-hor-spacing;
+    height: $left-bar-list-item-height;
+    border-radius: $list-item-border-radius;
+    background-color: $left-bar-list-item-bg-color;
+  }
+}
+
+//
+// Right bar list
+//
+
+.right-bar__list {
+  .right-bar__item {
+    margin: $list-ver-spacing $list-hor-spacing 0 $list-hor-spacing;
+    height: $right-bar-list-item-height;
+    border-radius: $list-item-border-radius;
+    background-color: $right-bar-list-item-bg-color;
+  }
+}
+
+//
+// Main bar list
+//
+
+.main-bar__list {
+  .main-bar__item {
+    position: relative;
+    margin: $list-ver-spacing $list-hor-spacing 0 $list-hor-spacing;
+    height: $main-bar-list-item-height;
+
+    .main-bar__item__img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: $main-bar-list-item-height;
+      height: $main-bar-list-item-height;
+      border-radius: $main-bar-list-item-height / 2;
+      background-color: $main-bar-list-item-bg-color;
+    }
+
+    .main-bar__item__text {
+      position: absolute;
+      left: $main-bar-list-item-height + 10px;
+      right: 0;
+      height: $main-bar-list-item-height;
+      border-radius: $list-item-border-radius;
+      background-color: $main-bar-list-item-bg-color;
+    }
+  }
+}
