@@ -1,27 +1,5 @@
 @import 'breakpoints/breakpoints';
 
-html {
-  --rtd-config:
-    ----rtd-device
-    --rtd-device-name mobile
-    --rtd-device-class rtd-mobile
-    --rtd-device-max-width 767px
-    --rtd-device-merge-down-to --rtd-none
-    --rtd-device-merge-up-to --rtd-none
-    ----rtd-device
-    --rtd-device-name tablet
-    --rtd-device-class rtd-tablet
-    --rtd-device-max-width 1024px
-    --rtd-device-merge-down-to mobile
-    --rtd-device-merge-up-to --rtd-none
-    ----rtd-device
-    --rtd-device-name desktop
-    --rtd-device-class rtd-desktop
-    --rtd-device-max-width --rtd-none
-    --rtd-device-merge-down-to tablet
-    --rtd-device-merge-up-to --rtd-none;
-}
-
 $header-bg-color: #999;
 $left-bar-bg-color: #bbb;
 $right-bar-bg-color: #bbb;
@@ -31,13 +9,14 @@ $header-left-list-hor-spacing: 10px;
 $header-icon-fg-color: #ddd;
 $header-icon-font-size: 20px;
 $header-title-fg-color: #ddd;
-$header-title-font-size: 20px;
+$header-title-font-size: 18px;
 
 $left-bar-list-item-bg-color: #ddd;
 $right-bar-list-item-bg-color: #ddd;
 $main-bar-list-item-bg-color: #bbb;
 
-$header-height: 40px;
+$header-height: 60px;
+$header-line-height: 30px;
 $left-bar-width: 25%;
 $right-bar-width: 25%;
 
@@ -74,21 +53,26 @@ $main-bar-list-item-height: 20px;
   padding: 0 $list-hor-spacing;
   background-color: $header-bg-color;
 
-  i {
-    @include media-only(mobile) {
+  .header__left-btns,
+  .header__title {
+    line-height: $header-line-height;
+  }
+
+  .header__left-btns {
+    display: inline-block;
+    @include media-up(tablet) {
+      display: none;
+    }
+
+    i {
       display: inline-block;
       font-size: $header-icon-font-size;
       color: $header-icon-fg-color;
-    }
-
-    @include media-up(tablet) {
-      display: none;
     }
   }
 
   .header__title {
     display: inline-block;
-    line-height: $header-height;
     font-size: $header-title-font-size;
     color: $header-title-fg-color;
   }
@@ -233,4 +217,38 @@ $main-bar-list-item-height: 20px;
       background-color: $main-bar-list-item-bg-color;
     }
   }
+}
+
+//
+// Title styles
+//
+
+// Device
+
+.title__device {
+  color: cyan;
+}
+
+// Breakpoints value
+
+.title__breakpoints-value {
+  color: #444;
+}
+
+// Breakpoints
+
+.title__breakpoint {
+  font-weight: 900;
+}
+
+.title__breakpoint--normal {
+  color: #fff;
+}
+
+.title__breakpoint--success {
+  color: greenyellow;
+}
+
+.title__breakpoint--fail {
+  color: orange;
 }

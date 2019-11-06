@@ -42,7 +42,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = "<nav class=\"navbar fixed-top navbar-light bg-light\">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" href=\"javascript: void(0)\">RTD-CSS</a>\n  </div>\n</nav>\n<div class=\"gl-navbar-sizer\"></div>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 

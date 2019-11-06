@@ -1,23 +1,22 @@
 html {
   --rtd-config:
-    ----rtd-device
-    --rtd-device-name mobile
-    --rtd-device-class rtd-mobile
-    --rtd-device-max-width 767px
-    --rtd-device-merge-down-to --rtd-none
-    --rtd-device-merge-up-to --rtd-none
-    ----rtd-device
-    --rtd-device-name tablet
-    --rtd-device-class rtd-tablet
-    --rtd-device-max-width 1024px
-    --rtd-device-merge-down-to mobile
-    --rtd-device-merge-up-to --rtd-none
-    ----rtd-device
-    --rtd-device-name desktop
-    --rtd-device-class rtd-desktop
-    --rtd-device-max-width --rtd-none
-    --rtd-device-merge-down-to tablet
-    --rtd-device-merge-up-to --rtd-none; }
+    --rtd-units 'px'
+    --rtd-breakpoints 'mobile' '767' 'tablet' '1024' 'desktop'
+    --rtd-unknown-device
+    [rtd-device-name] 'unknown'
+    [rtd-device-class] 'rtd-unknown'
+    --rtd-mobile-device
+    [rtd-device-name] 'mobile'
+    [rtd-device-class] 'rtd-mobile'
+    [rtd-device-breakpoints] 'mobile' '900' 'tablet' #rtd-none 'desktop'
+    --rtd-tablet-device
+    [rtd-device-name] 'tablet'
+    [rtd-device-class] 'rtd-tablet'
+    [rtd-device-breakpoints] 'mobile' '650' 'tablet' '1400' 'desktop'
+    --rtd-desktop-device
+    [rtd-device-name] 'desktop'
+    [rtd-device-class] 'rtd-desktop'
+    [rtd-device-breakpoints] 'mobile' #rtd-none 'tablet' '900' 'desktop'; }
 
 *,
 *:before,
@@ -31,21 +30,24 @@ html {
   left: 0;
   right: 0;
   top: 0;
-  height: 40px;
+  height: 60px;
   padding: 0 16px;
   background-color: #999; }
-  @media (max-width: 767px) {
-    .header i {
+  .header .header__left-btns,
+  .header .header__title {
+    line-height: 30px; }
+  .header .header__left-btns {
+    display: inline-block; }
+    @media (min-width: 768px) {
+      .header .header__left-btns {
+        display: none; } }
+    .header .header__left-btns i {
       display: inline-block;
       font-size: 20px;
-      color: #ddd; } }
-  @media (min-width: 768px) {
-    .header i {
-      display: none; } }
+      color: #ddd; }
   .header .header__title {
     display: inline-block;
-    line-height: 40px;
-    font-size: 20px;
+    font-size: 18px;
     color: #ddd; }
   .header .header__left-list {
     margin-left: -10px; }
@@ -56,7 +58,7 @@ html {
   position: fixed;
   left: 0;
   right: 0;
-  top: 40px;
+  top: 60px;
   bottom: 0; }
 
 @media (max-width: 767px) {
@@ -134,3 +136,21 @@ html {
     height: 20px;
     border-radius: 8px;
     background-color: #bbb; }
+
+.title__device {
+  color: cyan; }
+
+.title__breakpoints-value {
+  color: #444; }
+
+.title__breakpoint {
+  font-weight: 900; }
+
+.title__breakpoint--normal {
+  color: #fff; }
+
+.title__breakpoint--success {
+  color: greenyellow; }
+
+.title__breakpoint--fail {
+  color: orange; }
